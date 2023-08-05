@@ -1,0 +1,23 @@
+.useBtn {
+  min-height: 30px;
+  background-color: #4472c4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: capitalize;
+}
+
+.useBtn > span {
+  font-size: 9px;
+  color: gold;
+}
+.useBtn:active {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

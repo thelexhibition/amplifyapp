@@ -1,0 +1,53 @@
+.collapsibleTableMain {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
+  /* padding: 0 50px 20px 50px !important; */
+  /* width: 70% !important; */
+  height: 100% !important;
+}
+.collapsibleTable {
+  padding: 0 20px 20px 20px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  align-items: center !important;
+  height: 92.8%;
+  justify-content: space-between;
+}
+.collapsibleTableTh {
+  background-color: #4472c4;
+  color: #fff !important;
+  text-align: center !important;
+  border-left: 1px solid #fff;
+  text-transform: capitalize;
+  font-weight: 700 !important;
+}
+
+.collapsibleTableTd,
+.collapsibleTableTh {
+  padding: 0 !important;
+  height: 4em !important;
+}
+
+.mainHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #0070c0;
+  color: #000;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  width: 100%;
+}
+
+.collapsibleTableUnder {
+  display: flex;
+}
+.dataDiv {
+  background-color: lightgray;
+  padding: 10px;
+}
+.dataDiv,
+.chartDiv {
+  width: 100%;
+}

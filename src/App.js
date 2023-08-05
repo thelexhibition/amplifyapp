@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { API, graphqlOperation } from "aws-amplify";
+import { useEffect, useState } from "react";
+import { listSignalsQuery } from "./graphql/queries";
+import CollapsibleTable from "./Components/tables/CollapsibleTable";
+import Loader from "./Components/loader";
 
 function App() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const { data } = await API.graphql(graphqlOperation(listSignalsQuery));
+      if (data !== undefined) {
+        setData(data.listSIGNALS.items);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching signals:", error);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loading ? <Loader /> : <CollapsibleTable tableData={data} />}
     </div>
   );
 }

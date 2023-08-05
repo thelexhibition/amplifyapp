@@ -1,0 +1,13 @@
+type SIGNALS @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  datetime: String
+  name: String
+  description: String
+  assignee: String
+  group: String
+  workflow: String
+  related_data: String
+  createdAt: String
+  updatedAt: String
+}
+ 
