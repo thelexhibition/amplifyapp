@@ -4,12 +4,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const SelectOption = ({ label, data }) => {
-  const [age, setAge] = React.useState("");
+const SelectOption = ({ label, data, onChange, name }) => {
+  // const [age, setAge] = React.useState("");
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
   // console.log({data})
   return (
     <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
@@ -17,9 +17,10 @@ const SelectOption = ({ label, data }) => {
       <Select
         labelId="demo-select-small-label"
         id="demo-select-small"
-        value={age}
+        // value={age}
         label={label}
-        onChange={handleChange}
+        onChange={onChange}
+        name={name}
       >
         <MenuItem value="">
           <em>None</em>

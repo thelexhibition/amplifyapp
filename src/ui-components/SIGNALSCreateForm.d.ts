@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -18,7 +18,7 @@ export declare type SIGNALSCreateFormInputValues = {
     description?: string;
     assignee?: string;
     group?: string;
-    workflow?: string;
+    workflow?: boolean;
     related_data?: string;
     createdAt?: string;
     updatedAt?: string;
@@ -29,7 +29,7 @@ export declare type SIGNALSCreateFormValidationValues = {
     description?: ValidationFunction<string>;
     assignee?: ValidationFunction<string>;
     group?: ValidationFunction<string>;
-    workflow?: ValidationFunction<string>;
+    workflow?: ValidationFunction<boolean>;
     related_data?: ValidationFunction<string>;
     createdAt?: ValidationFunction<string>;
     updatedAt?: ValidationFunction<string>;
@@ -42,7 +42,7 @@ export declare type SIGNALSCreateFormOverridesProps = {
     description?: PrimitiveOverrideProps<TextFieldProps>;
     assignee?: PrimitiveOverrideProps<TextFieldProps>;
     group?: PrimitiveOverrideProps<TextFieldProps>;
-    workflow?: PrimitiveOverrideProps<TextFieldProps>;
+    workflow?: PrimitiveOverrideProps<SwitchFieldProps>;
     related_data?: PrimitiveOverrideProps<TextFieldProps>;
     createdAt?: PrimitiveOverrideProps<TextFieldProps>;
     updatedAt?: PrimitiveOverrideProps<TextFieldProps>;

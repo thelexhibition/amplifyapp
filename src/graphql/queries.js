@@ -1,10 +1,33 @@
-// Import the necessary query function from AWS Amplify
-import { graphqlOperation } from 'aws-amplify';
+/* eslint-disable */
+// this is an auto generated file. This will be overwritten
 
-// Define the listSignals query
-export const listSignalsQuery = `
-  query ListSignals {
-    listSIGNALS {
+export const getSIGNALS = /* GraphQL */ `
+  query GetSIGNALS($id: ID!) {
+    getSIGNALS(id: $id) {
+      id
+      datetime
+      name
+      description
+      assignee
+      group
+      workflow
+      related_data
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const listSIGNALS = /* GraphQL */ `
+  query ListSIGNALS(
+    $filter: ModelSIGNALSFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSIGNALS(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         datetime
@@ -16,25 +39,46 @@ export const listSignalsQuery = `
         related_data
         createdAt
         updatedAt
+        _deleted
       }
+      nextToken
+      startedAt
+      __typename
     }
   }
 `;
-
-// Define the getSignal query
-export const getSignalQuery = `
-  query GetSignal($id: ID!) {
-    getSIGNAL(id: $id) {
-      id
-      datetime
-      name
-      description
-      assignee
-      group
-      workflow
-      related_data
-      createdAt
-      updatedAt
+export const syncSIGNALS = /* GraphQL */ `
+  query SyncSIGNALS(
+    $filter: ModelSIGNALSFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncSIGNALS(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        datetime
+        name
+        description
+        assignee
+        group
+        workflow
+        related_data
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
     }
   }
 `;

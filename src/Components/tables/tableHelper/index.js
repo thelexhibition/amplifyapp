@@ -7,7 +7,7 @@ export const collapsibleTableTh = [
   "action_workflow",
 ];
 
-export const time = ["1 hours", "5 hours", "one day"];
+export const time = ["Past 24hrs", "Past 7 Days", "Past 30 Days"];
 
 export const action = ["Resolved", "Reject", "All"];
 

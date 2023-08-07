@@ -27,8 +27,12 @@ import SelectOption from "../select/SelectOption";
 import Input from "../input/Input";
 
 function Row(props) {
-  const { row } = props;
+  const { row, onClick } = props;
   const [open, setOpen] = React.useState(false);
+
+  const rawData = row?.related_data;
+  const a = JSON.stringify(rawData);
+  // console.log(JSON.parse(a));
 
   return (
     <React.Fragment>
@@ -57,8 +61,12 @@ function Row(props) {
         <TableCell className="collapsibleTableTd" align="center">
           {row?.group}
         </TableCell>
-        <TableCell className="collapsibleTableTd" align="center">
-          <CheckBox />
+        <TableCell
+          className="collapsibleTableTd"
+          align="center"
+          onClick={() => onClick(row)}
+        >
+          <CheckBox workflow={row?.workflow} />
         </TableCell>
       </TableRow>
       <TableRow>
@@ -92,17 +100,96 @@ function Row(props) {
   );
 }
 
-export default function CollapsibleTable({ tableData }) {
-  console.log({ tableData });
+export default function CollapsibleTable({ tableData, updateFields }) {
   const [currentPage, setCurrentPage] = React.useState(1);
-
   const itemsPerPage = 5;
+  const [filterData, setFilterData] = React.useState({
+    time: "",
+    name: "",
+    desciption: "",
+    assigne: "",
+    group: "",
+    action: "",
+  });
+  const [data, setData] = React.useState([]);
+  const inputHandler = (event) => {
+    const { name, value } = event.target;
+    setFilterData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const paginate = (array, page) => {
     const startIndex = (page - 1) * itemsPerPage;
     return array.slice(startIndex, startIndex + itemsPerPage);
   };
-  const paginatedData = paginate(tableData || [], currentPage);
+
+  // React.useEffect(() => {
+  //   const DataBinding = () => {};
+  //   DataBinding();
+  // }, [data]);
+
+  React.useEffect(() => {
+    const validData = tableData?.filter((ele) => {
+      if (filterData.time) {
+        const currentTime = new Date().getTime();
+        const timeIntervals = {
+          "Past 24hrs": 24 * 60 * 60 * 1000,
+          "Past 7 Days": 7 * 24 * 60 * 60 * 1000,
+          "Past 30 Days": 30 * 24 * 60 * 60 * 1000,
+        };
+        const selectedTime = timeIntervals[filterData.time];
+
+        if (selectedTime !== undefined) {
+          const cutoffTime = currentTime - selectedTime;
+
+          // Split date and time
+          const [datePart, timePart] = ele.datetime.split(", ");
+          const [dd, mm, yyyy] = datePart.split("/").map(Number);
+          const [hh, min, sec] = timePart.split(":").map(Number);
+
+          // Create a new Date object with the parsed values
+          const rowDateTime = new Date(
+            yyyy,
+            mm - 1,
+            dd,
+            hh,
+            min,
+            sec
+          ).getTime();
+
+          return rowDateTime >= cutoffTime;
+        }
+      }
+      if (filterData.name) {
+        return ele.name.includes(filterData.name);
+      }
+      if (filterData.desciption) {
+        return ele.description.includes(filterData.desciption);
+      }
+      if (filterData.assigne) {
+        return ele.assignee.includes(filterData.assigne);
+      }
+      if (filterData.group) {
+        return ele.group.includes(filterData.group);
+      }
+      if (filterData.action) {
+        const action = {
+          Resolved: true,
+          Reject: false,
+          All: "All",
+        };
+        const workflow = action[filterData.action];
+        if (workflow === "All") {
+          return ele;
+        } else return ele.workflow === workflow;
+      }
+      return ele;
+    });
+    if (validData) {
+      setData([...validData]);
+    }
+  }, [filterData]);
+
+  const paginatedData = paginate(data, currentPage);
 
   return (
     <TableContainer component={Paper} className="collapsibleTableMain">
@@ -115,22 +202,48 @@ export default function CollapsibleTable({ tableData }) {
             <TableRow>
               <TableCell />
               <TableCell align="left">
-                <SelectOption label="Time Filter" data={time} />
+                <SelectOption
+                  label="Time Filter"
+                  data={time}
+                  onChange={inputHandler}
+                  name="time"
+                />
               </TableCell>
               <TableCell align="left">
-                <Input label="Signal Filter" />
+                <Input
+                  label="Signal Filter"
+                  name="name"
+                  onChange={inputHandler}
+                />
               </TableCell>
               <TableCell align="left">
-                <Input label="Desc Filter" />
+                <Input
+                  label="Desc Filter"
+                  name="desciption"
+                  onChange={inputHandler}
+                />
               </TableCell>
               <TableCell align="left">
-                <Input label="Assign Filter" />
+                <Input
+                  label="Assign Filter"
+                  name="assigne"
+                  onChange={inputHandler}
+                />
               </TableCell>
               <TableCell align="left">
-                <Input label="Group Filter" />
+                <Input
+                  label="Group Filter"
+                  name="group"
+                  onChange={inputHandler}
+                />
               </TableCell>
               <TableCell align="left">
-                <SelectOption label="Action Filter" data={action} />
+                <SelectOption
+                  name="action"
+                  label="Action Filter"
+                  data={action}
+                  onChange={inputHandler}
+                />
               </TableCell>
             </TableRow>
             <TableRow>
@@ -150,12 +263,12 @@ export default function CollapsibleTable({ tableData }) {
           </TableHead>
           <TableBody>
             {paginatedData.map((row, i) => (
-              <Row key={i} row={row} />
+              <Row key={i} row={row} onClick={updateFields} />
             ))}
           </TableBody>
         </Table>
         <TablePagination
-          count={Math.ceil(tableData.length / itemsPerPage)}
+          count={Math.ceil(data.length / itemsPerPage)}
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
           onChange={(event, value) => setCurrentPage(value)}

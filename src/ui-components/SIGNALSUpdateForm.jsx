@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { SIGNALS } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -29,7 +35,7 @@ export default function SIGNALSUpdateForm(props) {
     description: "",
     assignee: "",
     group: "",
-    workflow: "",
+    workflow: false,
     related_data: "",
     createdAt: "",
     updatedAt: "",
@@ -326,13 +332,13 @@ export default function SIGNALSUpdateForm(props) {
         hasError={errors.group?.hasError}
         {...getOverrideProps(overrides, "group")}
       ></TextField>
-      <TextField
+      <SwitchField
         label="Workflow"
-        isRequired={false}
-        isReadOnly={false}
-        value={workflow}
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={workflow}
         onChange={(e) => {
-          let { value } = e.target;
+          let value = e.target.checked;
           if (onChange) {
             const modelFields = {
               datetime,
@@ -357,7 +363,7 @@ export default function SIGNALSUpdateForm(props) {
         errorMessage={errors.workflow?.errorMessage}
         hasError={errors.workflow?.hasError}
         {...getOverrideProps(overrides, "workflow")}
-      ></TextField>
+      ></SwitchField>
       <TextField
         label="Related data"
         isRequired={false}

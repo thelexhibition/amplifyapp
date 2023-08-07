@@ -13,7 +13,7 @@ export const schema = {
                 "datetime": {
                     "name": "datetime",
                     "isArray": false,
-                    "type": "AWSDate",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -48,7 +48,7 @@ export const schema = {
                 "workflow": {
                     "name": "workflow",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -62,14 +62,14 @@ export const schema = {
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
                 "updatedAt": {
                     "name": "updatedAt",
                     "isArray": false,
-                    "type": "AWSTime",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -103,5 +103,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "528182d5196f2e34455e2cb758bf1a32"
+    "version": "3a360936311e466c6aea7cd0e0657782"
 };
