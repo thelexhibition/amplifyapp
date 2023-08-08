@@ -35,7 +35,7 @@ export default function SIGNALSCreateForm(props) {
     assignee: "",
     group: "",
     workflow: false,
-    related_data: "",
+    chart_data: "",
     createdAt: "",
     updatedAt: "",
   };
@@ -47,9 +47,7 @@ export default function SIGNALSCreateForm(props) {
   const [assignee, setAssignee] = React.useState(initialValues.assignee);
   const [group, setGroup] = React.useState(initialValues.group);
   const [workflow, setWorkflow] = React.useState(initialValues.workflow);
-  const [related_data, setRelated_data] = React.useState(
-    initialValues.related_data
-  );
+  const [chart_data, setChart_data] = React.useState(initialValues.chart_data);
   const [createdAt, setCreatedAt] = React.useState(initialValues.createdAt);
   const [updatedAt, setUpdatedAt] = React.useState(initialValues.updatedAt);
   const [errors, setErrors] = React.useState({});
@@ -60,7 +58,7 @@ export default function SIGNALSCreateForm(props) {
     setAssignee(initialValues.assignee);
     setGroup(initialValues.group);
     setWorkflow(initialValues.workflow);
-    setRelated_data(initialValues.related_data);
+    setChart_data(initialValues.chart_data);
     setCreatedAt(initialValues.createdAt);
     setUpdatedAt(initialValues.updatedAt);
     setErrors({});
@@ -72,7 +70,7 @@ export default function SIGNALSCreateForm(props) {
     assignee: [],
     group: [],
     workflow: [],
-    related_data: [],
+    chart_data: [],
     createdAt: [],
     updatedAt: [],
   };
@@ -108,7 +106,7 @@ export default function SIGNALSCreateForm(props) {
           assignee,
           group,
           workflow,
-          related_data,
+          chart_data,
           createdAt,
           updatedAt,
         };
@@ -171,7 +169,7 @@ export default function SIGNALSCreateForm(props) {
               assignee,
               group,
               workflow,
-              related_data,
+              chart_data,
               createdAt,
               updatedAt,
             };
@@ -203,7 +201,7 @@ export default function SIGNALSCreateForm(props) {
               assignee,
               group,
               workflow,
-              related_data,
+              chart_data,
               createdAt,
               updatedAt,
             };
@@ -235,7 +233,7 @@ export default function SIGNALSCreateForm(props) {
               assignee,
               group,
               workflow,
-              related_data,
+              chart_data,
               createdAt,
               updatedAt,
             };
@@ -267,7 +265,7 @@ export default function SIGNALSCreateForm(props) {
               assignee: value,
               group,
               workflow,
-              related_data,
+              chart_data,
               createdAt,
               updatedAt,
             };
@@ -299,7 +297,7 @@ export default function SIGNALSCreateForm(props) {
               assignee,
               group: value,
               workflow,
-              related_data,
+              chart_data,
               createdAt,
               updatedAt,
             };
@@ -331,7 +329,7 @@ export default function SIGNALSCreateForm(props) {
               assignee,
               group,
               workflow: value,
-              related_data,
+              chart_data,
               createdAt,
               updatedAt,
             };
@@ -349,10 +347,10 @@ export default function SIGNALSCreateForm(props) {
         {...getOverrideProps(overrides, "workflow")}
       ></SwitchField>
       <TextField
-        label="Related data"
+        label="Chart data"
         isRequired={false}
         isReadOnly={false}
-        value={related_data}
+        value={chart_data}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -363,22 +361,22 @@ export default function SIGNALSCreateForm(props) {
               assignee,
               group,
               workflow,
-              related_data: value,
+              chart_data: value,
               createdAt,
               updatedAt,
             };
             const result = onChange(modelFields);
-            value = result?.related_data ?? value;
+            value = result?.chart_data ?? value;
           }
-          if (errors.related_data?.hasError) {
-            runValidationTasks("related_data", value);
+          if (errors.chart_data?.hasError) {
+            runValidationTasks("chart_data", value);
           }
-          setRelated_data(value);
+          setChart_data(value);
         }}
-        onBlur={() => runValidationTasks("related_data", related_data)}
-        errorMessage={errors.related_data?.errorMessage}
-        hasError={errors.related_data?.hasError}
-        {...getOverrideProps(overrides, "related_data")}
+        onBlur={() => runValidationTasks("chart_data", chart_data)}
+        errorMessage={errors.chart_data?.errorMessage}
+        hasError={errors.chart_data?.hasError}
+        {...getOverrideProps(overrides, "chart_data")}
       ></TextField>
       <TextField
         label="Created at"
@@ -395,7 +393,7 @@ export default function SIGNALSCreateForm(props) {
               assignee,
               group,
               workflow,
-              related_data,
+              chart_data,
               createdAt: value,
               updatedAt,
             };
@@ -427,7 +425,7 @@ export default function SIGNALSCreateForm(props) {
               assignee,
               group,
               workflow,
-              related_data,
+              chart_data,
               createdAt,
               updatedAt: value,
             };

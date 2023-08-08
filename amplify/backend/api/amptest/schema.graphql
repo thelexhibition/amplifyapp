@@ -6,7 +6,7 @@ type SIGNALS @model @auth(rules: [{ allow: public }]) {
   assignee: String
   group: String
   workflow: Boolean
-  related_data: String
+  chart_data: String
   createdAt: String
   updatedAt: String
 }

@@ -11,7 +11,7 @@ export const getSIGNALS = /* GraphQL */ `
       assignee
       group
       workflow
-      related_data
+      chart_data
       createdAt
       updatedAt
       _version
@@ -36,10 +36,13 @@ export const listSIGNALS = /* GraphQL */ `
         assignee
         group
         workflow
-        related_data
+        chart_data
         createdAt
         updatedAt
+        _version
         _deleted
+        _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
@@ -68,7 +71,7 @@ export const syncSIGNALS = /* GraphQL */ `
         assignee
         group
         workflow
-        related_data
+        chart_data
         createdAt
         updatedAt
         _version

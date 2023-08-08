@@ -11,7 +11,7 @@ export const onCreateSIGNALS = /* GraphQL */ `
       assignee
       group
       workflow
-      related_data
+      chart_data
       createdAt
       updatedAt
       _version
@@ -31,7 +31,7 @@ export const onUpdateSIGNALS = /* GraphQL */ `
       assignee
       group
       workflow
-      related_data
+      chart_data
       createdAt
       updatedAt
       _version
@@ -51,7 +51,7 @@ export const onDeleteSIGNALS = /* GraphQL */ `
       assignee
       group
       workflow
-      related_data
+      chart_data
       createdAt
       updatedAt
       _version

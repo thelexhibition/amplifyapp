@@ -29,11 +29,7 @@ import Input from "../input/Input";
 function Row(props) {
   const { row, onClick } = props;
   const [open, setOpen] = React.useState(false);
-
-  const rawData = row?.related_data;
-  const a = JSON.stringify(rawData);
-  // console.log(JSON.parse(a));
-
+  const chartData = JSON.parse(row?.chart_data);
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -89,7 +85,7 @@ function Row(props) {
                   <Typography>...continued</Typography>
                 </Typography>
                 <Typography component="div" className="chartDiv">
-                  <StackedBarChart />
+                  <StackedBarChart chartData={chartData}/>
                 </Typography>
               </Typography>
             </Box>
@@ -111,7 +107,9 @@ export default function CollapsibleTable({ tableData, updateFields }) {
     group: "",
     action: "",
   });
+
   const [data, setData] = React.useState([]);
+
   const inputHandler = (event) => {
     const { name, value } = event.target;
     setFilterData((prev) => ({ ...prev, [name]: value }));
@@ -122,12 +120,8 @@ export default function CollapsibleTable({ tableData, updateFields }) {
     return array.slice(startIndex, startIndex + itemsPerPage);
   };
 
-  // React.useEffect(() => {
-  //   const DataBinding = () => {};
-  //   DataBinding();
-  // }, [data]);
-
   React.useEffect(() => {
+    
     const validData = tableData?.filter((ele) => {
       if (filterData.time) {
         const currentTime = new Date().getTime();
@@ -141,12 +135,10 @@ export default function CollapsibleTable({ tableData, updateFields }) {
         if (selectedTime !== undefined) {
           const cutoffTime = currentTime - selectedTime;
 
-          // Split date and time
           const [datePart, timePart] = ele.datetime.split(", ");
           const [dd, mm, yyyy] = datePart.split("/").map(Number);
           const [hh, min, sec] = timePart.split(":").map(Number);
 
-          // Create a new Date object with the parsed values
           const rowDateTime = new Date(
             yyyy,
             mm - 1,
@@ -185,9 +177,9 @@ export default function CollapsibleTable({ tableData, updateFields }) {
       return ele;
     });
     if (validData) {
-      setData([...validData]);
+      setData(validData);
     }
-  }, [filterData]);
+  }, [tableData, filterData]);
 
   const paginatedData = paginate(data, currentPage);
 

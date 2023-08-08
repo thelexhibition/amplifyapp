@@ -52,8 +52,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "related_data": {
-                    "name": "related_data",
+                "chart_data": {
+                    "name": "chart_data",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -103,5 +103,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "3a360936311e466c6aea7cd0e0657782"
+    "version": "93264e820cf23c6626ba627296938801"
 };

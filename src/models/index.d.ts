@@ -17,7 +17,7 @@ type EagerSIGNALS = {
   readonly assignee?: string | null;
   readonly group?: string | null;
   readonly workflow?: boolean | null;
-  readonly related_data?: string | null;
+  readonly chart_data?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -33,7 +33,7 @@ type LazySIGNALS = {
   readonly assignee?: string | null;
   readonly group?: string | null;
   readonly workflow?: boolean | null;
-  readonly related_data?: string | null;
+  readonly chart_data?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

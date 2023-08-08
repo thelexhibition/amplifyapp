@@ -19,7 +19,7 @@ export declare type SIGNALSCreateFormInputValues = {
     assignee?: string;
     group?: string;
     workflow?: boolean;
-    related_data?: string;
+    chart_data?: string;
     createdAt?: string;
     updatedAt?: string;
 };
@@ -30,7 +30,7 @@ export declare type SIGNALSCreateFormValidationValues = {
     assignee?: ValidationFunction<string>;
     group?: ValidationFunction<string>;
     workflow?: ValidationFunction<boolean>;
-    related_data?: ValidationFunction<string>;
+    chart_data?: ValidationFunction<string>;
     createdAt?: ValidationFunction<string>;
     updatedAt?: ValidationFunction<string>;
 };
@@ -43,7 +43,7 @@ export declare type SIGNALSCreateFormOverridesProps = {
     assignee?: PrimitiveOverrideProps<TextFieldProps>;
     group?: PrimitiveOverrideProps<TextFieldProps>;
     workflow?: PrimitiveOverrideProps<SwitchFieldProps>;
-    related_data?: PrimitiveOverrideProps<TextFieldProps>;
+    chart_data?: PrimitiveOverrideProps<TextFieldProps>;
     createdAt?: PrimitiveOverrideProps<TextFieldProps>;
     updatedAt?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
