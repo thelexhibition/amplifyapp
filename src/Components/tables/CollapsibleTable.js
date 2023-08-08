@@ -85,7 +85,7 @@ function Row(props) {
                   <Typography>...continued</Typography>
                 </Typography>
                 <Typography component="div" className="chartDiv">
-                  <StackedBarChart chartData={chartData}/>
+                  <StackedBarChart chartData={chartData} />
                 </Typography>
               </Typography>
             </Box>
@@ -98,7 +98,7 @@ function Row(props) {
 
 export default function CollapsibleTable({ tableData, updateFields }) {
   const [currentPage, setCurrentPage] = React.useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 9;
   const [filterData, setFilterData] = React.useState({
     time: "",
     name: "",
@@ -121,7 +121,6 @@ export default function CollapsibleTable({ tableData, updateFields }) {
   };
 
   React.useEffect(() => {
-    
     const validData = tableData?.filter((ele) => {
       if (filterData.time) {
         const currentTime = new Date().getTime();
@@ -184,16 +183,18 @@ export default function CollapsibleTable({ tableData, updateFields }) {
   const paginatedData = paginate(data, currentPage);
 
   return (
-    <TableContainer component={Paper} className="collapsibleTableMain">
-      <Typography component="div" className="mainHeading">
-        <EditIcon /> App Name
-      </Typography>
-      <Typography component="div" className="collapsibleTable">
+    <Box
+      sx={{ display: "flex", justifyContent: "space-between", height: "100vh" }}
+    >
+      <TableContainer component={Paper}>
+        <Typography component="div" className="mainHeading">
+          <EditIcon /> App Name
+        </Typography>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell align="left">
+              <TableCell align="center">
                 <SelectOption
                   label="Time Filter"
                   data={time}
@@ -201,35 +202,35 @@ export default function CollapsibleTable({ tableData, updateFields }) {
                   name="time"
                 />
               </TableCell>
-              <TableCell align="left">
+              <TableCell align="center">
                 <Input
                   label="Signal Filter"
                   name="name"
                   onChange={inputHandler}
                 />
               </TableCell>
-              <TableCell align="left">
+              <TableCell align="center">
                 <Input
                   label="Desc Filter"
                   name="desciption"
                   onChange={inputHandler}
                 />
               </TableCell>
-              <TableCell align="left">
+              <TableCell align="center">
                 <Input
                   label="Assign Filter"
                   name="assigne"
                   onChange={inputHandler}
                 />
               </TableCell>
-              <TableCell align="left">
+              <TableCell align="center">
                 <Input
                   label="Group Filter"
                   name="group"
                   onChange={inputHandler}
                 />
               </TableCell>
-              <TableCell align="left">
+              <TableCell align="center">
                 <SelectOption
                   name="action"
                   label="Action Filter"
@@ -265,7 +266,7 @@ export default function CollapsibleTable({ tableData, updateFields }) {
           itemsPerPage={itemsPerPage}
           onChange={(event, value) => setCurrentPage(value)}
         />
-      </Typography>
-    </TableContainer>
+      </TableContainer>
+    </Box>
   );
 }

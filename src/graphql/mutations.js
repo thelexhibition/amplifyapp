@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createSIGNALS = /* GraphQL */ `
-  mutation CreateSIGNALS(
+export const createSignals = /* GraphQL */ `
+  mutation CreateSignals(
     $input: CreateSIGNALSInput!
     $condition: ModelSIGNALSConditionInput
   ) {
-    createSIGNALS(input: $input, condition: $condition) {
+    createSignals(input: $input, condition: $condition) {
       id
       datetime
       name
@@ -24,12 +24,12 @@ export const createSIGNALS = /* GraphQL */ `
     }
   }
 `;
-export const updateSIGNALS = /* GraphQL */ `
-  mutation UpdateSIGNALS(
+export const updateSignals = /* GraphQL */ `
+  mutation UpdateSignals(
     $input: UpdateSIGNALSInput!
     $condition: ModelSIGNALSConditionInput
   ) {
-    updateSIGNALS(input: $input, condition: $condition) {
+    updateSignals(input: $input, condition: $condition) {
       id
       datetime
       name
@@ -47,12 +47,12 @@ export const updateSIGNALS = /* GraphQL */ `
     }
   }
 `;
-export const deleteSIGNALS = /* GraphQL */ `
-  mutation DeleteSIGNALS(
+export const deleteSignals = /* GraphQL */ `
+  mutation DeleteSignals(
     $input: DeleteSIGNALSInput!
     $condition: ModelSIGNALSConditionInput
   ) {
-    deleteSIGNALS(input: $input, condition: $condition) {
+    deleteSignals(input: $input, condition: $condition) {
       id
       datetime
       name

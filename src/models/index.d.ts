@@ -9,6 +9,7 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 type EagerSIGNALS = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<SIGNALS, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly datetime?: string | null;
@@ -25,6 +26,7 @@ type EagerSIGNALS = {
 type LazySIGNALS = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<SIGNALS, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly datetime?: string | null;
